@@ -1,0 +1,38 @@
+easyblock = 'ConfigureMake'
+
+name = 'mcxx'
+version = '1.0'
+local_filename_version = '1.0'
+
+homepage = 'https://github.com/bsc-pm/ompss-2-cluster-releases.git'
+description = "OmpSs-2@Cluster: OmpSs-2 with task offloading"
+
+toolchain = {'name': 'gpsmpi', 'version': '2022a'}
+
+sources = [{
+	'filename': 'mcxx.tar.gz',
+	'git_config': {
+		'url' : 'https://github.com/ipiedrahiv',
+		'repo_name' : 'mcxx',
+		'tag': '1.0-ci'
+		},
+	}]
+
+builddependencies = [
+	('Autotools', '20220317'),
+	('pkgconf', '1.8.0'),
+	('Bison', '3.8.2'),
+	('flex', '2.6.4'),
+	('gperf', '3.1')
+]
+
+dependencies = [
+    ('nanoscluster', '1.0')
+]
+
+preconfigopts = "autoreconf -vif && "
+
+configopts = "--enable-ompss-2 --with-nanos6=/p/scratch/deepsea/piedrahta-velez1/easybuild/deep/software/nanoscluster/1.0-gpsmpi-2022a"
+
+buildopts = 'CC="$CC" CFLAGS="$CFLAGS"'
+

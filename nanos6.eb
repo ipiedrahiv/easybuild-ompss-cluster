@@ -1,0 +1,35 @@
+# EasyConfig for OmpSs-2/git
+easyblock = 'ConfigureMake'
+name = 'nanoscluster'
+version = '1.0'
+local_filename_version = '1.0'
+
+homepage = 'https://github.com/bsc-pm/nanos6-cluster'
+description = 'Nanos6 Runtime for OmpSs2@cluster'
+
+toolchain = {'name': 'gpsmpi', 'version': '2022a'}
+
+sources = [{
+    'filename': 'nanos6.tar.gz',
+    'git_config': {
+        'url': 'https://github.com/ipiedrahiv',
+        'repo_name': 'nanos6-cluster',
+        'tag': '1.0-ci',
+        #'clone_into': 'nanos6-cluster'
+    }
+}]
+
+dependencies = [ ('Boost', '1.79.0'), 
+#('libxml2', '2.9.13'), 
+('hwloc', '2.7.1'), 
+('numactl', '2.0.15') ]
+
+builddependencies = [ ('Autotools', '20220317'),
+    		      ('pkgconf', '1.8.0') ] 
+
+preconfigopts = "autoreconf -vif && "
+configopts = "--enable-cluster --disable-ctf-instrumentation --disable-graph-instrumentation --disable-lint-instrumentation --disable-verbose-instrumentation"
+
+modextravars = { 'NANOS6_HOME': '%(installdir)s' }
+
+buildopts = 'CC="$CC" CFLAGS="$CFLAGS"'

@@ -1,0 +1,14 @@
+# EasyConfig for OmpSs-2
+easyblock = 'Bundle'
+name = 'ompss2cluster'
+version = '2023.11'
+
+homepage = 'https://github.com/bsc-pm/nanos6-cluster'
+description = 'OmpSs2@Cluster'
+
+toolchain = {'name': 'gpsmpi', 'version': '2022a'}
+
+dependencies = [
+    ('nanoscluster', '1.0'),
+    ('mcxx', '1.0')
+]

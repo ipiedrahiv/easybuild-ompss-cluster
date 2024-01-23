@@ -1,0 +1,55 @@
+easyblock = 'ConfigureMake'
+
+name = 'OmpSs-2ClusterNanos6'
+version = '2022.02'
+local_filename_version = '2022.02'
+
+homepage = 'https://github.com/bsc-pm/ompss-2-cluster-releases.git'
+description = "OmpSs-2Cluster: OmpSs-2 with task offloading"
+
+# toolchain = {'name': 'gmpich', 'version' : '3.3.2'}
+toolchain = {'name': 'GCC', 'version' : '10.2.0'}
+# toolchainopts = {'pic': True}
+
+# source_urls = ['https://github.com/bsc-pm/ompss-2-cluster-releases.git']
+sources = [{
+	'filename': 'ompss-2-cluster-nanos6.tar.gz',
+	'git_config': {
+		'url' : 'https://github.com/bsc-pm/',
+		'repo_name' : 'nanos6-cluster',
+		'commit' : 'dce396554ea2645ebf23cb6a16c65a42a83e1221' #,
+		# 'recursive': True,
+		},
+	}]
+
+builddependencies = [
+	('Autotools', '20200321')
+]
+dependencies = [
+	('MPICH', '3.3.2'),
+	('Boost', '1.74.0'),
+	('hwloc', '2.2.0'),
+	('numactl', '2.0.13')
+]
+
+# ACLOCAL_PATH: doesn't seem to be set up by pkg-config correctly
+# See https://tirania.org/blog/archive/2012/Oct-20.html
+preconfigopts = "export ACLOCAL_PATH=${ACLOCAL_PATH}:/p/project/deepsea/carpenter1/easybuild/software/pkg-config/0.29.2-GCCcore-10.3.0/share/aclocal/ && autoreconf -fiv && "
+
+configopts = '--enable-cluster --disable-turbo-variant --disable-ctf-instrumentation --disable-graph-instrumentation --disable-lint-instrumentation --disable-verbose-instrumentation'
+
+buildopts = 'CC="$CC" CFLAGS="$CFLAGS"'
+
+sanity_check_paths = {
+    'files': ['bin/nanos6-info', 'include/nanos6.h',
+              'lib/libnanos6-optimized-regions.so',
+              'lib/libnanos6-debug-regions.so'],
+    'dirs': ['include/nanos6'],
+}
+
+sanity_check_commands = [
+    'nanos6-info | grep "Nanos6 version 2.5.1"',
+]
+
+moduleclass = 'devel'
+
