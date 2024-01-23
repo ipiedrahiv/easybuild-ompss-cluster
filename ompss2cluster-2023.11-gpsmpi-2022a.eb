@@ -10,5 +10,5 @@ toolchain = {'name': 'gpsmpi', 'version': '2022a'}
 
 dependencies = [
     ('nanoscluster', '1.0'),
-    ('mcxx', '1.0')
+    ('mcxxcluster', '1.0')
 ]

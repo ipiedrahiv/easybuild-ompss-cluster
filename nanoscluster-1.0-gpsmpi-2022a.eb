@@ -7,7 +7,7 @@ local_filename_version = '1.0'
 homepage = 'https://github.com/bsc-pm/nanos6-cluster'
 description = 'Nanos6 Runtime for OmpSs2@cluster'
 
-toolchain = {'name': 'gpsmpi', 'version': '2022a'}
+toolchain = {'name': 'gpsmpi', 'version': '2022a-mt'}
 
 sources = [{
     'filename': 'nanos6.tar.gz',
@@ -22,8 +22,9 @@ sources = [{
 dependencies = [ ('Boost', '1.79.0'), 
 #('libxml2', '2.9.13'), 
 ('hwloc', '2.7.1'), 
-('numactl', '2.0.15')]
-# ('ParaStationMPI', '5.7.1-1', '-mt', ('GCC', '11.3.0')) ]
+('numactl', '2.0.15'),
+#('psmpi', '5.7.0-1', '', ('GCC', '11.3.0'))
+ ]
 
 builddependencies = [ ('Autotools', '20220317'),
     		      ('pkgconf', '1.8.0') ] 

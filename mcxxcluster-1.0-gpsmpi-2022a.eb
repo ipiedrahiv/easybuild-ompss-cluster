@@ -1,6 +1,6 @@
 easyblock = 'ConfigureMake'
 
-name = 'mcxx'
+name = 'mcxxcluster'
 version = '1.0'
 local_filename_version = '1.0'
 
@@ -27,12 +27,14 @@ builddependencies = [
 ]
 
 dependencies = [
-    ('nanoscluster', '1.0')
+    ('nanoscluster', '1.0'),
+    ('SQLite', '.3.38.3')
 ]
 
 preconfigopts = "autoreconf -vif && "
 
-configopts = "--enable-ompss-2 --with-nanos6=/p/scratch/deepsea/piedrahta-velez1/easybuild/deep/software/nanoscluster/1.0-gpsmpi-2022a"
+configopts = "--enable-ompss-2 --with-nanos6=$NANOS6_HOME"
+#configopts = "--enable-ompss-2 --with-nanos6=/p/scratch/deepsea/piedrahta-velez1/easybuild/deep/software/nanoscluster/1.0-gpsmpi-2022a"
 
 buildopts = 'CC="$CC" CFLAGS="$CFLAGS"'
 
