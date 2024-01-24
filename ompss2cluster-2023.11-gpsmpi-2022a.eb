@@ -6,7 +6,7 @@ version = '2023.11'
 homepage = 'https://github.com/bsc-pm/nanos6-cluster'
 description = 'OmpSs2@Cluster'
 
-toolchain = {'name': 'gpsmpi', 'version': '2022a'}
+toolchain = {'name': 'gpsmpi', 'version': '2022a-mt'}
 
 dependencies = [
     ('nanoscluster', '1.0'),
