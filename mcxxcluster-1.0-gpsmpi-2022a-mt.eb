@@ -7,7 +7,7 @@ local_filename_version = '1.0'
 homepage = 'https://github.com/bsc-pm/ompss-2-cluster-releases.git'
 description = "OmpSs-2@Cluster: OmpSs-2 with task offloading"
 
-toolchain = {'name': 'gpsmpi', 'version': '2022a'}
+toolchain = {'name': 'gpsmpi', 'version': '2022a-mt'}
 
 sources = [{
 	'filename': 'mcxx.tar.gz',
@@ -27,8 +27,8 @@ builddependencies = [
 ]
 
 dependencies = [
-    ('nanoscluster', '1.0'),
-    ('SQLite', '.3.38.3')
+    ('nanoscluster', '1.0', '', ('gpsmpi', '2022a-mt')),
+    ('SQLite', '3.38.3')
 ]
 
 preconfigopts = "autoreconf -vif && "
